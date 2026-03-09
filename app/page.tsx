@@ -42,39 +42,6 @@ export default function Home() {
         </ul>
       </section>
 
-      <div className="grid grid-cols-3 gap-3">
-        <a
-          href="/events"
-          className="bg-[var(--card)] rounded-2xl p-4 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
-        >
-          <span className="text-2xl mb-2 block">🎭</span>
-          <span className="font-semibold block text-sm">Events</span>
-          <span className="text-[10px] text-[var(--muted)]">
-            Shows, tours, sport
-          </span>
-        </a>
-        <a
-          href="/neighborhoods"
-          className="bg-[var(--card)] rounded-2xl p-4 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
-        >
-          <span className="text-2xl mb-2 block">🏘️</span>
-          <span className="font-semibold block text-sm">Places</span>
-          <span className="text-[10px] text-[var(--muted)]">
-            8 neighborhoods
-          </span>
-        </a>
-        <a
-          href="/chat"
-          className="bg-[var(--card)] rounded-2xl p-4 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
-        >
-          <span className="text-2xl mb-2 block">💬</span>
-          <span className="font-semibold block text-sm">Ask</span>
-          <span className="text-[10px] text-[var(--muted)]">
-            AI assistant
-          </span>
-        </a>
-      </div>
-
       <section className="bg-[var(--accent-light)] rounded-2xl p-5 border border-red-200 dark:border-red-900">
         <h2 className="font-semibold text-sm uppercase tracking-wide text-[var(--accent)] mb-2">
           Quick Tips for Sydney
