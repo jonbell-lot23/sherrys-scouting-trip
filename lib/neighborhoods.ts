@@ -149,4 +149,21 @@ export const neighborhoods: Neighborhood[] = [
     iotAngle: "Premium B2B market. Smart office, luxury home automation. Crown Sydney is a smart building reference. High-value, low-volume sales.",
     mapQuery: "Barangaroo, Sydney NSW",
   },
+  {
+    name: "Bondi Beach",
+    slug: "bondi-beach",
+    icon: "🏖️",
+    photo: "",
+    photoCredit: "",
+    vibe: "Iconic surf beach, coastal walks, brunch culture. Tanned locals in activewear, backpackers, and weekend crowds. The Sydney postcard come to life.",
+    peopleWatching: 5,
+    bestSpots: ["Bondi to Bronte coastal walk", "Hall Street cafes", "Bondi Icebergs pool"],
+    feelsLike: [
+      { city: "Mount Maunganui, NZ", why: "Beach town energy, surf culture, outdoor lifestyle" },
+      { city: "Mission Bay, Auckland", why: "Iconic beach strip, cafes, weekend crowds" },
+      { city: "Xiamen beach district", why: "Coastal lifestyle, tourist meets local, cafe culture" },
+    ],
+    iotAngle: "Health and fitness tech market. Wearables, smart home for active lifestyles, outdoor-indoor connected devices. Affluent, health-conscious consumers.",
+    mapQuery: "Bondi Beach, Sydney NSW",
+  },
 ];
