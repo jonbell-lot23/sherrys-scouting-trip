@@ -5,7 +5,7 @@ export interface Event {
   eventDates: string[];
   time: string;
   priceFrom: number; // cheapest ticket AUD
-  category: "theatre" | "opera" | "music" | "tour" | "sport" | "festival";
+  category: "theatre" | "opera" | "music" | "tour" | "sport" | "festival" | "meetup";
   description: string;
   whySherry: string;
   ticketUrl: string;
@@ -24,6 +24,7 @@ export const categoryLabels: Record<Event["category"], string> = {
   tour: "🏛️ Tour",
   sport: "🏈 Sport",
   festival: "🎉 Festival",
+  meetup: "🤝 Meetup",
 };
 
 export const categoryColors: Record<Event["category"], string> = {
@@ -33,6 +34,7 @@ export const categoryColors: Record<Event["category"], string> = {
   tour: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
   sport: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
   festival: "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200",
+  meetup: "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200",
 };
 
 // All dates in Sherry's trip window
@@ -342,5 +344,119 @@ export const events: Event[] = [
       "Free, right at Circular Quay. The rooftop café has one of Sydney's best views. Combine with the Badu Gili light show after.",
     ticketUrl: "https://www.mca.com.au/",
     neighborhood: "The Rocks",
+  },
+
+  // ── MEETUPS ──
+
+  // Tue Mar 10
+  {
+    name: "Sydney Startups Meetup",
+    venue: "Various (check Meetup.com)",
+    eventDates: ["2026-03-10"],
+    time: "6:00pm–8:30pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Regular Tuesday evening meetup for Sydney's startup community. Founders pitch, network, share war stories. Casual, welcoming to newcomers.",
+    whySherry:
+      "Perfect first-night activity. Meet local founders, mention you're scouting for IoT distribution — people will connect you.",
+    ticketUrl: "https://www.meetup.com/sydney-startups/",
+    neighborhood: "CBD",
+  },
+
+  // Wed Mar 11
+  {
+    name: "DDD Australia (Domain-Driven Design)",
+    venue: "Hybrid — check Meetup for venue",
+    eventDates: ["2026-03-11"],
+    time: "6:00pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Monthly meetup for software architects and developers. Technical talks on building complex systems. Good cross-section of Sydney's tech scene.",
+    whySherry:
+      "Even if the talks are technical, the networking after is gold. Software people often moonlight on IoT/hardware projects.",
+    ticketUrl: "https://www.meetup.com/find/au--sydney/technology/",
+    neighborhood: "CBD",
+  },
+
+  // Thu Mar 12
+  {
+    name: "Sydney Bits & Bolts (Software meets Hardware)",
+    venue: "Check Meetup.com for venue",
+    eventDates: ["2026-03-12"],
+    time: "6:00pm–8:00pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Meetup for people at the intersection of software and hardware — IoT, robotics, embedded systems, cloud-connected devices. Talks + demos.",
+    whySherry:
+      "This is YOUR meetup. Hardware + software = IoT. These are the people building and buying what you want to sell.",
+    ticketUrl: "https://www.meetup.com/sydney-bits-bolts-where-software-meets-hardware/",
+    neighborhood: "CBD",
+  },
+
+  // Fri Mar 13
+  {
+    name: "GDG Cloud Sydney at Google",
+    venue: "Google Sydney, Pyrmont",
+    eventDates: ["2026-03-13"],
+    time: "5:30pm–8:30pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Google Developer Group meetup at Google's Pyrmont office. Cloud, AI, and developer talks. Free food and drinks. Great venue.",
+    whySherry:
+      "Inside Google's office! Free food. Cloud/AI talks are directly relevant to smart home tech. Pyrmont is a good neighborhood to explore too.",
+    ticketUrl: "https://www.meetup.com/gdgcloudsydney/",
+    neighborhood: "Pyrmont",
+  },
+
+  // Sat Mar 14
+  {
+    name: "OzBerry — IoT Maker Space",
+    venue: "Check Meetup.com for venue",
+    eventDates: ["2026-03-14"],
+    time: "10:00am–1:00pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Monthly hands-on IoT maker meetup. People build internet-connected things with Arduino, Raspberry Pi, and open-source hardware. Very friendly community.",
+    whySherry:
+      "Literally IoT makers. See what hobbyists are building — these are your early adopters. Bring business cards.",
+    ticketUrl: "https://www.meetup.com/ozberrypi/",
+    neighborhood: "Various",
+  },
+
+  // Sun Mar 15
+  {
+    name: "Sydney AI Meetup",
+    venue: "Check Meetup.com for venue",
+    eventDates: ["2026-03-15"],
+    time: "2:00pm–5:00pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Regular meetup for AI practitioners — LLMs, generative AI, applied ML. Tech talks, demos, and networking. Mix of industry and academic.",
+    whySherry:
+      "AI + IoT is the hot combination. Smart home devices with AI are the future — these people know what's coming.",
+    ticketUrl: "https://www.meetup.com/sydney-ai-llms/",
+    neighborhood: "CBD",
+  },
+
+  // Tue Mar 17
+  {
+    name: "IoT Sydney Monthly Meetup",
+    venue: "Check Meetup.com for venue",
+    eventDates: ["2026-03-17"],
+    time: "6:00pm–8:00pm",
+    priceFrom: 0,
+    category: "meetup",
+    description:
+      "Sydney's dedicated Internet of Things meetup. Monthly on a weeknight with 1-2 presentations and networking. Experts in connected devices, sensors, and smart home tech.",
+    whySherry:
+      "THE IoT meetup in Sydney. This is exactly your industry. Ask about the Australian market, distribution channels, what products people want.",
+    ticketUrl: "https://www.meetup.com/internet-of-things-sydney/",
+    neighborhood: "CBD",
   },
 ];
