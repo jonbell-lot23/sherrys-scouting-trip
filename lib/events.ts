@@ -14,9 +14,7 @@ export interface Event {
 
 export function priceLabel(price: number): string {
   if (price === 0) return "Free";
-  if (price < 50) return `$ $${price}`;
-  if (price < 100) return `$$ $${price}`;
-  return `$$$ $${price}`;
+  return `$${price}`;
 }
 
 export const categoryLabels: Record<Event["category"], string> = {
@@ -220,5 +218,129 @@ export const events: Event[] = [
       "St Patrick's Day in Sydney! The State Theatre building alone is worth seeing. Good cultural experience.",
     ticketUrl: "https://www.statetheatre.com.au/",
     neighborhood: "CBD",
+  },
+
+  // ── FREE EVENING ACTIVITIES ──
+
+  // Nightly
+  {
+    name: "Badu Gili — Opera House Light Show",
+    venue: "Sydney Opera House (eastern sails)",
+    eventDates: DAILY,
+    time: "Nightly after dark (~7pm, 6 mins)",
+    priceFrom: 0,
+    category: "festival",
+    description:
+      "Free 6-minute light projection on the Opera House sails telling First Nations stories. Just walk up and watch — no ticket needed.",
+    whySherry:
+      "Beautiful and free. Perfect way to end any evening near Circular Quay. Great photo opportunity.",
+    ticketUrl: "https://www.sydneyoperahouse.com/visit/badu-gili",
+    neighborhood: "Circular Quay",
+  },
+  {
+    name: "Harbour Bridge Walk (free)",
+    venue: "Sydney Harbour Bridge pedestrian path",
+    eventDates: DAILY,
+    time: "Anytime (best at sunset ~6:30pm)",
+    priceFrom: 0,
+    category: "tour",
+    description:
+      "Walk across the Harbour Bridge for free on the pedestrian path. Stunning harbour views both ways. Access from stairs at The Rocks or Milsons Point.",
+    whySherry:
+      "Best free view in Sydney. Walk from The Rocks side at sunset, come back via train from Milsons Point.",
+    ticketUrl: "https://www.sydney.com/destinations/sydney/sydney-city/sydney-harbour-bridge",
+    neighborhood: "The Rocks",
+  },
+  {
+    name: "Opera House Forecourt & Steps",
+    venue: "Sydney Opera House forecourt",
+    eventDates: DAILY,
+    time: "Evening (best after 6pm)",
+    priceFrom: 0,
+    category: "festival",
+    description:
+      "1.8 hectares of open public space with harbour views. Broad steps are an unofficial amphitheatre. Street performers, sunset watching, people-watching.",
+    whySherry:
+      "The ultimate free people-watching spot. See how Sydneysiders actually use public space — relevant for IoT outdoor products.",
+    ticketUrl: "https://www.sydneyoperahouse.com/visit",
+    neighborhood: "Circular Quay",
+  },
+  {
+    name: "Observatory Hill Sunset",
+    venue: "Observatory Hill Park",
+    eventDates: DAILY,
+    time: "Sunset (~6:30pm)",
+    priceFrom: 0,
+    category: "tour",
+    description:
+      "Sydney's highest natural point. Panoramic harbour views, historic observatory building. Pack snacks from a nearby cafe and watch the city light up.",
+    whySherry:
+      "Quiet, beautiful, locals-only feel. Good spot to decompress after a day of scouting. Near The Rocks for dinner after.",
+    ticketUrl: "https://www.sydney.com/destinations/sydney/sydney-city/the-rocks/attractions/observatory-hill",
+    neighborhood: "The Rocks",
+  },
+
+  // Thu–Sun Mar 12–15
+  {
+    name: "Lakemba Nights (Ramadan Markets)",
+    venue: "Haldon Street, Lakemba",
+    eventDates: ["2026-03-12", "2026-03-13", "2026-03-14", "2026-03-15"],
+    time: "6pm–2am",
+    priceFrom: 0,
+    category: "festival",
+    description:
+      "Free entry night market during Ramadan. 60+ food stalls — Indonesian, Pakistani, Lebanese, Syrian, Indian. Buzzing street atmosphere. Take the train to Lakemba station.",
+    whySherry:
+      "Free entry, incredible food (buy what you eat). See multicultural Sydney at its best. Totally unique, nothing like this in NZ or China.",
+    ticketUrl: "https://www.cbcity.nsw.gov.au/Lakemba-nights-during-ramadan",
+    neighborhood: "Lakemba",
+  },
+
+  // Fri Mar 13
+  {
+    name: "Biennale of Sydney — Opening Night",
+    venue: "White Bay Power Station",
+    eventDates: ["2026-03-13"],
+    time: "7pm–11pm",
+    priceFrom: 0,
+    category: "festival",
+    description:
+      "Opening night of Australia's biggest contemporary art festival (25th edition). Free entry. Massive industrial venue with international art installations.",
+    whySherry:
+      "Major cultural event, free. Great for meeting creative/tech people in Sydney. The intersection of art and technology is strong here.",
+    ticketUrl: "https://www.biennaleofsydney.art/",
+    neighborhood: "Rozelle",
+  },
+
+  // Fri Mar 13 onwards
+  {
+    name: "Biennale of Sydney (exhibitions)",
+    venue: "Art Gallery of NSW + White Bay + more",
+    eventDates: ["2026-03-14", "2026-03-15", "2026-03-16", "2026-03-17"],
+    time: "10am–5pm (Fri til 9pm)",
+    priceFrom: 0,
+    category: "festival",
+    description:
+      "Free contemporary art across 5 venues. Art Gallery of NSW is walkable from the CBD. White Bay Power Station is a stunning industrial space.",
+    whySherry:
+      "Free world-class art. The Art Gallery is near the Botanical Gardens — combine for a full afternoon. Friday late nights til 9pm.",
+    ticketUrl: "https://www.biennaleofsydney.art/",
+    neighborhood: "Various",
+  },
+
+  // Fri Mar 13 (MCA late)
+  {
+    name: "MCA Late (free gallery night)",
+    venue: "Museum of Contemporary Art, The Rocks",
+    eventDates: ["2026-03-13"],
+    time: "Until 9pm",
+    priceFrom: 0,
+    category: "festival",
+    description:
+      "Free late-night entry to the MCA. Contemporary art with harbour views from the rooftop terrace. Right on Circular Quay.",
+    whySherry:
+      "Free, right at Circular Quay. The rooftop café has one of Sydney's best views. Combine with the Badu Gili light show after.",
+    ticketUrl: "https://www.mca.com.au/",
+    neighborhood: "The Rocks",
   },
 ];

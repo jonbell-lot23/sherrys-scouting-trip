@@ -10,20 +10,21 @@ import {
 } from "@/lib/events";
 
 const PINS_KEY = "sherry-pinned-events";
+const DISMISSED_KEY = "sherry-dismissed-events";
 
-function loadPins(): string[] {
+function loadSet(key: string): string[] {
   if (typeof window === "undefined") return [];
   try {
-    const stored = localStorage.getItem(PINS_KEY);
+    const stored = localStorage.getItem(key);
     return stored ? JSON.parse(stored) : [];
   } catch {
     return [];
   }
 }
 
-function savePins(pins: string[]) {
+function saveSet(key: string, items: string[]) {
   try {
-    localStorage.setItem(PINS_KEY, JSON.stringify(pins));
+    localStorage.setItem(key, JSON.stringify(items));
   } catch {}
 }
 
@@ -46,53 +47,59 @@ function EventCard({
   event,
   pinned,
   onTogglePin,
+  onDismiss,
 }: {
   event: Event;
   pinned: boolean;
   onTogglePin: () => void;
+  onDismiss: () => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const price = priceLabel(event.priceFrom);
 
   return (
     <div className="bg-[var(--card)] rounded-2xl border border-stone-200 dark:border-stone-700 overflow-hidden">
-      <div className="flex">
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex-1 text-left p-4 min-w-0"
-        >
-          <div className="flex items-start justify-between gap-2 mb-1.5">
-            <h3 className="font-bold text-sm leading-tight">{event.name}</h3>
-            <span
-              className={`text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 ${categoryColors[event.category]}`}
-            >
-              {categoryLabels[event.category]}
-            </span>
-          </div>
-          <div className="flex items-center gap-3 text-xs text-[var(--muted)]">
-            <span>📍 {event.venue}</span>
-            <span>🕐 {event.time}</span>
-          </div>
-          <div className="flex items-center justify-between mt-2">
-            <span className={`text-sm font-semibold ${event.priceFrom === 0 ? "text-green-600 dark:text-green-400" : ""}`}>
-              {price}
-            </span>
-            <span className="text-xs text-[var(--accent)]">
-              {expanded ? "Less ↑" : "More ↓"}
-            </span>
-          </div>
-        </button>
-
-        <button
-          onClick={onTogglePin}
-          className="px-3 flex items-start pt-4 shrink-0"
-          title={pinned ? "Unpin" : "Pin to top"}
-        >
-          <span className={`text-lg ${pinned ? "text-amber-400" : "text-stone-300 dark:text-stone-600"}`}>
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full text-left p-4"
+      >
+        <div className="flex items-start gap-2 mb-1.5">
+          <span
+            onClick={(e) => {
+              e.stopPropagation();
+              onTogglePin();
+            }}
+            className={`text-lg mt-[-1px] cursor-pointer shrink-0 ${pinned ? "text-amber-400" : "text-stone-300 dark:text-stone-600"}`}
+            title={pinned ? "Unpin" : "Pin to top"}
+          >
             {pinned ? "★" : "☆"}
           </span>
-        </button>
-      </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="font-bold text-sm leading-tight">{event.name}</h3>
+              <span
+                className={`text-[10px] font-medium px-2 py-0.5 rounded-full shrink-0 ${categoryColors[event.category]}`}
+              >
+                {categoryLabels[event.category]}
+              </span>
+            </div>
+            <div className="flex items-center gap-3 text-xs text-[var(--muted)] mt-1">
+              <span>📍 {event.venue}</span>
+            </div>
+            <div className="flex items-center justify-between mt-1.5">
+              <span className="text-xs text-[var(--muted)]">🕐 {event.time}</span>
+              <span className={`text-sm font-semibold ${event.priceFrom === 0 ? "text-green-600 dark:text-green-400" : ""}`}>
+                {price}
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="text-right">
+          <span className="text-xs text-[var(--accent)]">
+            {expanded ? "Less ↑" : "More ↓"}
+          </span>
+        </div>
+      </button>
 
       {expanded && (
         <div className="px-4 pb-4 space-y-3 border-t border-stone-100 dark:border-stone-700 pt-3">
@@ -112,7 +119,7 @@ function EventCard({
               rel="noopener noreferrer"
               className="flex-1 text-center text-sm font-medium bg-[var(--accent)] text-white rounded-xl py-2.5 hover:opacity-90"
             >
-              Get Tickets
+              {event.priceFrom === 0 ? "More Info" : "Get Tickets"}
             </a>
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.venue + ", Sydney")}`}
@@ -120,9 +127,19 @@ function EventCard({
               rel="noopener noreferrer"
               className="text-sm font-medium border border-stone-200 dark:border-stone-700 rounded-xl px-4 py-2.5 hover:border-[var(--accent)]"
             >
-              🗺️ Map
+              🗺️
             </a>
           </div>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDismiss();
+            }}
+            className="w-full text-center text-xs text-[var(--muted)] hover:text-[var(--accent)] py-1"
+          >
+            🚫 No thanks — hide this event
+          </button>
         </div>
       )}
     </div>
@@ -131,10 +148,12 @@ function EventCard({
 
 export default function EventsPage() {
   const [pins, setPins] = useState<string[]>([]);
+  const [dismissed, setDismissed] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setPins(loadPins());
+    setPins(loadSet(PINS_KEY));
+    setDismissed(loadSet(DISMISSED_KEY));
     setMounted(true);
   }, []);
 
@@ -143,19 +162,35 @@ export default function EventsPage() {
       ? pins.filter((p) => p !== name)
       : [...pins, name];
     setPins(updated);
-    savePins(updated);
+    saveSet(PINS_KEY, updated);
+  }
+
+  function dismiss(name: string) {
+    const updated = [...dismissed, name];
+    setDismissed(updated);
+    saveSet(DISMISSED_KEY, updated);
+  }
+
+  function undismissAll() {
+    setDismissed([]);
+    saveSet(DISMISSED_KEY, []);
   }
 
   const today = todayISO();
 
-  // Collect all future dates across events, deduplicated and sorted
+  // Filter out dismissed events
+  const activeEvents = mounted
+    ? events.filter((e) => !dismissed.includes(e.name))
+    : events;
+
+  // Collect all future dates
   const allDates = Array.from(
-    new Set(events.flatMap((e) => e.eventDates.filter((d) => d >= today)))
+    new Set(activeEvents.flatMap((e) => e.eventDates.filter((d) => d >= today)))
   ).sort();
 
-  // Group events by date, sorted by price (pinned first within each day)
+  // Group by date, pinned first then cheapest
   const groupedByDay = allDates.map((date) => {
-    const dayEvents = events
+    const dayEvents = activeEvents
       .filter((e) => e.eventDates.includes(date))
       .sort((a, b) => {
         const aPinned = pins.includes(a.name) ? 0 : 1;
@@ -166,21 +201,14 @@ export default function EventsPage() {
     return { date, events: dayEvents };
   });
 
-  // Also show pinned events that may have passed, in a separate section
-  const pinnedPastEvents = mounted
-    ? events.filter(
-        (e) =>
-          pins.includes(e.name) &&
-          e.eventDates.every((d) => d < today)
-      )
-    : [];
+  const dismissedCount = dismissed.length;
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold mb-1">Sydney Events</h1>
         <p className="text-sm text-[var(--muted)]">
-          Mar 10–17, 2026 — sorted cheapest first, tap ☆ to pin
+          Mar 10–17, 2026 — cheapest first, tap ☆ to pin
         </p>
       </div>
 
@@ -201,29 +229,12 @@ export default function EventsPage() {
                 event={event}
                 pinned={pins.includes(event.name)}
                 onTogglePin={() => togglePin(event.name)}
+                onDismiss={() => dismiss(event.name)}
               />
             ))}
           </div>
         </section>
       ))}
-
-      {pinnedPastEvents.length > 0 && (
-        <section>
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)] mb-2">
-            Pinned (past)
-          </h2>
-          <div className="space-y-3 opacity-50">
-            {pinnedPastEvents.map((event) => (
-              <EventCard
-                key={event.name}
-                event={event}
-                pinned={true}
-                onTogglePin={() => togglePin(event.name)}
-              />
-            ))}
-          </div>
-        </section>
-      )}
 
       {groupedByDay.length === 0 && (
         <p className="text-sm text-[var(--muted)] text-center py-8">
@@ -231,7 +242,16 @@ export default function EventsPage() {
         </p>
       )}
 
-      <p className="text-[10px] text-[var(--muted)] text-center pt-2">
+      {dismissedCount > 0 && (
+        <button
+          onClick={undismissAll}
+          className="w-full text-center text-xs text-[var(--muted)] hover:text-[var(--accent)] py-2"
+        >
+          Show {dismissedCount} hidden event{dismissedCount > 1 ? "s" : ""}
+        </button>
+      )}
+
+      <p className="text-[10px] text-[var(--muted)] text-center">
         Prices in AUD (cheapest available). Verify on venue sites before booking.
       </p>
     </div>
