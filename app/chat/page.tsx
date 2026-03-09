@@ -1,6 +1,93 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+
+function renderMarkdown(text: string) {
+  // Split into paragraphs on double newlines
+  const blocks = text.split(/\n\n+/);
+
+  return blocks.map((block, bi) => {
+    const trimmed = block.trim();
+
+    // Check if block is a list
+    const lines = trimmed.split("\n");
+    const isList = lines.every((l) => /^[-*•]\s/.test(l.trim()));
+
+    if (isList) {
+      return (
+        <ul key={bi} className="list-disc pl-4 space-y-1">
+          {lines.map((line, li) => (
+            <li key={li}>{renderInline(line.replace(/^[-*•]\s+/, ""))}</li>
+          ))}
+        </ul>
+      );
+    }
+
+    // Check if block is a numbered list
+    const isNumbered = lines.every((l) => /^\d+[.)]\s/.test(l.trim()));
+    if (isNumbered) {
+      return (
+        <ol key={bi} className="list-decimal pl-4 space-y-1">
+          {lines.map((line, li) => (
+            <li key={li}>
+              {renderInline(line.replace(/^\d+[.)]\s+/, ""))}
+            </li>
+          ))}
+        </ol>
+      );
+    }
+
+    // Regular paragraph (preserve single newlines as <br>)
+    return (
+      <p key={bi}>
+        {lines.map((line, li) => (
+          <span key={li}>
+            {li > 0 && <br />}
+            {renderInline(line)}
+          </span>
+        ))}
+      </p>
+    );
+  });
+}
+
+function renderInline(text: string) {
+  // Bold, italic, inline code
+  const parts: (string | React.ReactElement)[] = [];
+  const regex = /(\*\*(.+?)\*\*|\*(.+?)\*|`(.+?)`)/g;
+  let lastIndex = 0;
+  let match;
+  let key = 0;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[2]) {
+      parts.push(<strong key={key++}>{match[2]}</strong>);
+    } else if (match[3]) {
+      parts.push(<em key={key++}>{match[3]}</em>);
+    } else if (match[4]) {
+      parts.push(
+        <code key={key++} className="bg-stone-100 dark:bg-stone-800 px-1 rounded text-xs">
+          {match[4]}
+        </code>
+      );
+    }
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return <>{parts}</>;
+}
+
+function Markdown({ content }: { content: string }) {
+  const rendered = useMemo(() => renderMarkdown(content), [content]);
+  return <div className="space-y-2">{rendered}</div>;
+}
 
 interface Message {
   role: "user" | "assistant";
@@ -148,7 +235,11 @@ export default function ChatPage() {
                   : "bg-[var(--card)] border border-stone-200 dark:border-stone-700 rounded-bl-sm"
               }`}
             >
-              <p className="whitespace-pre-wrap">{m.content}</p>
+              {m.role === "assistant" ? (
+                <Markdown content={m.content} />
+              ) : (
+                <p className="whitespace-pre-wrap">{m.content}</p>
+              )}
             </div>
           </div>
         ))}
