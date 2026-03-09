@@ -130,6 +130,14 @@ function NeighborhoodCard({
             <p className="text-sm leading-relaxed">{n.iotAngle}</p>
           </div>
 
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/neighborhoods/${n.slug}.png`}
+            alt={`${n.name} illustration`}
+            className="w-full rounded-xl"
+            loading="lazy"
+          />
+
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)] mb-2">
               Your Notes
