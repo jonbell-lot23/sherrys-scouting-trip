@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #fafaf9;
+  --fg: #1c1917;
+  --accent: #dc2626;
+  --accent-light: #fef2f2;
+  --card: #ffffff;
+  --muted: #78716c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1917;
+    --fg: #fafaf9;
+    --accent: #f87171;
+    --accent-light: #292524;
+    --card: #292524;
+    --muted: #a8a29e;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
