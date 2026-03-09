@@ -131,17 +131,6 @@ function NeighborhoodCard({
           </div>
 
           <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={n.photo}
-              alt={`${n.name} neighborhood`}
-              className="w-full h-40 object-cover rounded-xl"
-              loading="lazy"
-            />
-            <p className="text-[10px] text-[var(--muted)] mt-1">Photo via Unsplash</p>
-          </div>
-
-          <div>
             <h3 className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)] mb-2">
               Your Notes
             </h3>
