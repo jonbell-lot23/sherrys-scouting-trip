@@ -19,6 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#dc2626" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
       <body className="min-h-dvh">
         <nav className="sticky top-0 z-50 border-b border-stone-200 dark:border-stone-700 bg-[var(--bg)]/90 backdrop-blur-sm">
           <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">

@@ -135,22 +135,22 @@ export default function ChatPage() {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const text = input.trim();
-    if (!text || loading) return;
+  async function sendMessage(text: string) {
+    if (!text.trim() || loading) return;
 
-    const userMsg: Message = { role: "user", content: text };
+    const userMsg: Message = { role: "user", content: text.trim() };
     const updated = [...messages, userMsg];
     setMessages(updated);
     setInput("");
     setLoading(true);
 
     try {
+      // Send only last 10 messages to save API cost
+      const recentMessages = updated.slice(-10);
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updated }),
+        body: JSON.stringify({ messages: recentMessages }),
       });
 
       if (!res.ok) throw new Error("Failed to get response");
@@ -213,7 +213,7 @@ export default function ChatPage() {
               ].map((q) => (
                 <button
                   key={q}
-                  onClick={() => setInput(q)}
+                  onClick={() => sendMessage(q)}
                   className="text-xs bg-[var(--card)] border border-stone-200 dark:border-stone-700 rounded-full px-3 py-1.5 hover:border-[var(--accent)]"
                 >
                   {q}
@@ -257,7 +257,7 @@ export default function ChatPage() {
         <div ref={scrollRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2 pt-2 border-t border-stone-200 dark:border-stone-700">
+      <form onSubmit={(e) => { e.preventDefault(); sendMessage(input); }} className="flex gap-2 pt-2 border-t border-stone-200 dark:border-stone-700">
         <textarea
           ref={inputRef}
           value={input}
@@ -265,7 +265,7 @@ export default function ChatPage() {
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
-              handleSubmit(e);
+              sendMessage(input);
             }
           }}
           placeholder="Ask about Sydney..."

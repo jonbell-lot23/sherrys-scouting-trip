@@ -6,6 +6,7 @@ export interface Neighborhood {
   bestSpots: string[];
   feelsLike: { city: string; why: string }[];
   iotAngle: string;
+  mapQuery: string; // Google Maps search query
 }
 
 export const neighborhoods: Neighborhood[] = [
@@ -21,6 +22,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Shenzhen OCT Loft", why: "Design-forward creative district, galleries + cafes" },
     ],
     iotAngle: "High early-adopter density. Smart home showrooms, co-working spaces with integrated tech. Good for gauging premium IoT appetite.",
+    mapQuery: "Surry Hills, Sydney NSW",
   },
   {
     name: "Newtown",
@@ -34,6 +36,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Hangzhou Xiaohe Direct Street", why: "Old-meets-new, artsy, food-driven community" },
     ],
     iotAngle: "Price-sensitive but tech-curious. Student and young professional market. Budget smart home products would resonate.",
+    mapQuery: "Newtown, Sydney NSW",
   },
   {
     name: "Darlinghurst",
@@ -47,6 +50,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Shanghai French Concession", why: "Historic architecture, cocktail culture, expat-friendly" },
     ],
     iotAngle: "Hospitality-focused IoT opportunities. Smart lighting, ambiance tech, restaurant automation. High-end consumers who'll pay for quality.",
+    mapQuery: "Darlinghurst, Sydney NSW",
   },
   {
     name: "Chippendale",
@@ -60,6 +64,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Shenzhen Nanshan", why: "Tech-meets-university, startup energy, new buildings" },
     ],
     iotAngle: "Smart building showcase (Central Park is literally a green-tech marvel). University research connections. Good for B2B IoT partnerships.",
+    mapQuery: "Chippendale, Sydney NSW",
   },
   {
     name: "Glebe",
@@ -73,6 +78,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Hangzhou Wulin", why: "Educated, green, community-minded residential" },
     ],
     iotAngle: "Sustainability-conscious consumers. Energy monitoring, garden automation, eco-smart products would sell here.",
+    mapQuery: "Glebe, Sydney NSW",
   },
   {
     name: "Pyrmont",
@@ -86,6 +92,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Shanghai Pudong riverside", why: "Modern waterfront, high-rises, family-oriented" },
     ],
     iotAngle: "Apartment-dweller market. Compact smart home solutions, rental-friendly devices, no-drill installations. High density = word of mouth.",
+    mapQuery: "Pyrmont, Sydney NSW",
   },
   {
     name: "Barangaroo",
@@ -99,6 +106,7 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Shenzhen Qianhai", why: "New development zone, future-facing, premium positioning" },
     ],
     iotAngle: "Premium B2B market. Smart office, luxury home automation. Crown Sydney is a smart building reference. High-value, low-volume sales.",
+    mapQuery: "Barangaroo, Sydney NSW",
   },
   {
     name: "Ultimo",
@@ -112,5 +120,6 @@ export const neighborhoods: Neighborhood[] = [
       { city: "Guangzhou Tianhe", why: "Tech hub, Chinese community, commercial energy" },
     ],
     iotAngle: "Gateway to Chinese-Australian business networks. Chinatown connections, UTS partnerships, tech meetups. Best for networking, not retail.",
+    mapQuery: "Ultimo, Sydney NSW",
   },
 ];
