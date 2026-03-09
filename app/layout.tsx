@@ -36,7 +36,7 @@ export default function RootLayout({
                 Neighborhoods
               </a>
               <a href="/chat" className="hover:text-[var(--accent)]">
-                Ask Claude
+                Ask
               </a>
             </div>
           </div>

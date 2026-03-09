@@ -1,6 +1,7 @@
 export interface Neighborhood {
   name: string;
   slug: string;
+  icon: string; // emoji graphic
   vibe: string;
   peopleWatching: number; // 1-5
   bestSpots: string[];
@@ -13,6 +14,7 @@ export const neighborhoods: Neighborhood[] = [
   {
     name: "Surry Hills",
     slug: "surry-hills",
+    icon: "☕",
     vibe: "Creative professionals, specialty coffee, converted warehouses. The inner-city neighborhood where designers and tech workers collide over flat whites.",
     peopleWatching: 5,
     bestSpots: ["Bourke Street cafes", "Crown Street shops", "Shannon Reserve park benches"],
@@ -25,8 +27,24 @@ export const neighborhoods: Neighborhood[] = [
     mapQuery: "Surry Hills, Sydney NSW",
   },
   {
+    name: "Ultimo",
+    slug: "ultimo",
+    icon: "🏮",
+    vibe: "UTS campus energy, Chinatown-adjacent, broadcasting hub. Functional but with hidden gems. Where Sydney's Chinese and tech communities overlap.",
+    peopleWatching: 4,
+    bestSpots: ["UTS campus architecture", "Chinatown (Dixon Street)", "Powerhouse Museum area"],
+    feelsLike: [
+      { city: "CBD fringe, Auckland", why: "University, mixed-use, practical not pretty" },
+      { city: "Victoria University area, Wellington", why: "Student energy, functional, transit-connected" },
+      { city: "Guangzhou Tianhe", why: "Tech hub, Chinese community, commercial energy" },
+    ],
+    iotAngle: "Gateway to Chinese-Australian business networks. Chinatown connections, UTS partnerships, tech meetups. Best for networking, not retail.",
+    mapQuery: "Ultimo, Sydney NSW",
+  },
+  {
     name: "Newtown",
     slug: "newtown",
+    icon: "🎸",
     vibe: "Multicultural, bohemian, loud. Thai restaurants next to vintage shops next to activist bookstores. Sydney's most diverse strip.",
     peopleWatching: 5,
     bestSpots: ["King Street (whole length)", "Camperdown Memorial Rest Park", "Newtown Hotel courtyard"],
@@ -41,6 +59,7 @@ export const neighborhoods: Neighborhood[] = [
   {
     name: "Darlinghurst",
     slug: "darlinghurst",
+    icon: "🍸",
     vibe: "Cocktail bars, LGBTQ+ history, upscale dining. Oxford Street energy with a sophisticated edge. Night owl territory.",
     peopleWatching: 4,
     bestSpots: ["Oxford Street strip", "Victoria Street wine bars", "Green Park"],
@@ -55,6 +74,7 @@ export const neighborhoods: Neighborhood[] = [
   {
     name: "Chippendale",
     slug: "chippendale",
+    icon: "🎨",
     vibe: "University-adjacent arts precinct. Street art, galleries, and the famous Central Park vertical gardens. Feels like it's still becoming something.",
     peopleWatching: 4,
     bestSpots: ["Kensington Street", "White Rabbit Gallery area", "Central Park mall rooftop"],
@@ -69,6 +89,7 @@ export const neighborhoods: Neighborhood[] = [
   {
     name: "Glebe",
     slug: "glebe",
+    icon: "🌿",
     vibe: "Bookish, leafy, Saturday markets. Heritage homes and students from Sydney Uni. Slower pace, intellectual vibe.",
     peopleWatching: 3,
     bestSpots: ["Glebe Point Road cafes", "Glebe Markets (Saturday)", "Blackwattle Bay foreshore"],
@@ -83,6 +104,7 @@ export const neighborhoods: Neighborhood[] = [
   {
     name: "Pyrmont",
     slug: "pyrmont",
+    icon: "🚢",
     vibe: "Harbourside living, fish markets, converted wharves. Mix of families, young professionals, and tourists near Darling Harbour.",
     peopleWatching: 3,
     bestSpots: ["Sydney Fish Market", "Pirrama Park waterfront", "Jones Bay Wharf"],
@@ -97,6 +119,7 @@ export const neighborhoods: Neighborhood[] = [
   {
     name: "Barangaroo",
     slug: "barangaroo",
+    icon: "🏙️",
     vibe: "Brand new waterfront precinct. Corporate towers, luxury dining, harbour walks. Sydney's vision of its future self.",
     peopleWatching: 3,
     bestSpots: ["Barangaroo Reserve headland", "Waterman's Cove", "Crown Sydney surrounds"],
@@ -107,19 +130,5 @@ export const neighborhoods: Neighborhood[] = [
     ],
     iotAngle: "Premium B2B market. Smart office, luxury home automation. Crown Sydney is a smart building reference. High-value, low-volume sales.",
     mapQuery: "Barangaroo, Sydney NSW",
-  },
-  {
-    name: "Ultimo",
-    slug: "ultimo",
-    vibe: "UTS campus energy, Chinatown-adjacent, broadcasting hub. Functional but with hidden gems. Where Sydney's Chinese and tech communities overlap.",
-    peopleWatching: 3,
-    bestSpots: ["UTS campus architecture", "Chinatown (Dixon Street)", "Powerhouse Museum area"],
-    feelsLike: [
-      { city: "CBD fringe, Auckland", why: "University, mixed-use, practical not pretty" },
-      { city: "Victoria University area, Wellington", why: "Student energy, functional, transit-connected" },
-      { city: "Guangzhou Tianhe", why: "Tech hub, Chinese community, commercial energy" },
-    ],
-    iotAngle: "Gateway to Chinese-Australian business networks. Chinatown connections, UTS partnerships, tech meetups. Best for networking, not retail.",
-    mapQuery: "Ultimo, Sydney NSW",
   },
 ];

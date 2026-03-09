@@ -49,7 +49,10 @@ function NeighborhoodCard({
         className="w-full text-left p-5"
       >
         <div className="flex items-start justify-between mb-2">
-          <h2 className="font-bold text-lg">{n.name}</h2>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">{n.icon}</span>
+            <h2 className="font-bold text-lg">{n.name}</h2>
+          </div>
           <span className="text-xs bg-stone-100 dark:bg-stone-800 px-2 py-1 rounded-full shrink-0 ml-2">
             <Stars count={n.peopleWatching} />
           </span>
@@ -81,12 +84,16 @@ function NeighborhoodCard({
             </h3>
             <div className="flex flex-wrap gap-2">
               {n.bestSpots.map((spot) => (
-                <span
+                <a
                   key={spot}
-                  className="text-xs bg-stone-100 dark:bg-stone-800 px-3 py-1.5 rounded-full"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot + ", " + n.mapQuery)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs bg-stone-100 dark:bg-stone-800 px-3 py-1.5 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
                 >
                   📍 {spot}
-                </span>
+                </a>
               ))}
             </div>
           </div>

@@ -181,7 +181,7 @@ export default function ChatPage() {
     <div className="flex flex-col" style={{ height: "calc(100dvh - 120px)" }}>
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-xl font-bold">Ask Claude</h1>
+          <h1 className="text-xl font-bold">Ask</h1>
           <p className="text-xs text-[var(--muted)]">
             Sydney, IoT, trade &amp; neighborhood tips
           </p>

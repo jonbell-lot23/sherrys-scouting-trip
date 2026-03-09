@@ -58,7 +58,7 @@ export default function Home() {
           className="bg-[var(--card)] rounded-2xl p-5 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
         >
           <span className="text-2xl mb-2 block">💬</span>
-          <span className="font-semibold block">Ask Claude</span>
+          <span className="font-semibold block">Ask</span>
           <span className="text-xs text-[var(--muted)]">
             AI assistant for on-the-ground Qs
           </span>
