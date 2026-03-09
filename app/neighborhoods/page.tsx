@@ -33,14 +33,22 @@ function Stars({ count }: { count: number }) {
 function NeighborhoodCard({
   n,
   note,
-  onNoteChange,
+  onNoteSave,
 }: {
   n: Neighborhood;
   note: string;
-  onNoteChange: (slug: string, text: string) => void;
+  onNoteSave: (slug: string, text: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [draft, setDraft] = useState(note);
+  const [saved, setSaved] = useState(false);
+  const dirty = draft !== note;
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(n.mapQuery)}`;
+
+  // Sync draft when note prop changes (e.g. on mount)
+  useEffect(() => {
+    setDraft(note);
+  }, [note]);
 
   return (
     <div className="bg-[var(--card)] rounded-2xl border border-stone-200 dark:border-stone-700 overflow-hidden">
@@ -127,12 +135,32 @@ function NeighborhoodCard({
               Your Notes
             </h3>
             <textarea
-              value={note}
-              onChange={(e) => onNoteChange(n.slug, e.target.value)}
+              value={draft}
+              onChange={(e) => { setDraft(e.target.value); setSaved(false); }}
               placeholder="Jot down observations, contacts, ideas..."
               rows={3}
               className="w-full text-sm rounded-xl border border-stone-200 dark:border-stone-700 bg-[var(--bg)] px-3 py-2 resize-none focus:outline-none focus:border-[var(--accent)]"
             />
+            <div className="flex items-center justify-between mt-2">
+              <span className="text-[10px] text-[var(--muted)]">
+                {saved ? "Saved!" : dirty ? "Unsaved changes" : note ? "Saved" : ""}
+              </span>
+              <button
+                onClick={() => {
+                  onNoteSave(n.slug, draft);
+                  setSaved(true);
+                  setTimeout(() => setSaved(false), 2000);
+                }}
+                disabled={!dirty}
+                className={`text-xs font-medium px-4 py-1.5 rounded-lg transition-colors ${
+                  dirty
+                    ? "bg-[var(--accent)] text-white"
+                    : "bg-stone-100 dark:bg-stone-800 text-[var(--muted)]"
+                }`}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -147,7 +175,7 @@ export default function NeighborhoodsPage() {
     setNotes(loadNotes());
   }, []);
 
-  function handleNoteChange(slug: string, text: string) {
+  function handleNoteSave(slug: string, text: string) {
     const updated = { ...notes, [slug]: text };
     setNotes(updated);
     saveNotes(updated);
@@ -167,7 +195,7 @@ export default function NeighborhoodsPage() {
           key={n.slug}
           n={n}
           note={notes[n.slug] || ""}
-          onNoteChange={handleNoteChange}
+          onNoteSave={handleNoteSave}
         />
       ))}
     </div>

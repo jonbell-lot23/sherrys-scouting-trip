@@ -42,25 +42,35 @@ export default function Home() {
         </ul>
       </section>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-3 gap-3">
+        <a
+          href="/events"
+          className="bg-[var(--card)] rounded-2xl p-4 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
+        >
+          <span className="text-2xl mb-2 block">🎭</span>
+          <span className="font-semibold block text-sm">Events</span>
+          <span className="text-[10px] text-[var(--muted)]">
+            Shows, tours, sport
+          </span>
+        </a>
         <a
           href="/neighborhoods"
-          className="bg-[var(--card)] rounded-2xl p-5 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
+          className="bg-[var(--card)] rounded-2xl p-4 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
         >
           <span className="text-2xl mb-2 block">🏘️</span>
-          <span className="font-semibold block">Neighborhoods</span>
-          <span className="text-xs text-[var(--muted)]">
-            8 areas with vibe comparisons
+          <span className="font-semibold block text-sm">Places</span>
+          <span className="text-[10px] text-[var(--muted)]">
+            8 neighborhoods
           </span>
         </a>
         <a
           href="/chat"
-          className="bg-[var(--card)] rounded-2xl p-5 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
+          className="bg-[var(--card)] rounded-2xl p-4 border border-stone-200 dark:border-stone-700 hover:border-[var(--accent)] transition-colors"
         >
           <span className="text-2xl mb-2 block">💬</span>
-          <span className="font-semibold block">Ask</span>
-          <span className="text-xs text-[var(--muted)]">
-            AI assistant for on-the-ground Qs
+          <span className="font-semibold block text-sm">Ask</span>
+          <span className="text-[10px] text-[var(--muted)]">
+            AI assistant
           </span>
         </a>
       </div>

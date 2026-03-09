@@ -32,8 +32,11 @@ export default function RootLayout({
               🦘 Scouting Trip
             </a>
             <div className="flex gap-4 text-sm">
+              <a href="/events" className="hover:text-[var(--accent)]">
+                Events
+              </a>
               <a href="/neighborhoods" className="hover:text-[var(--accent)]">
-                Neighborhoods
+                Places
               </a>
               <a href="/chat" className="hover:text-[var(--accent)]">
                 Ask
