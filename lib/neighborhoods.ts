@@ -2,6 +2,8 @@ export interface Neighborhood {
   name: string;
   slug: string;
   icon: string; // emoji graphic
+  photo: string; // Unsplash photo URL
+  photoCredit: string; // photographer name
   vibe: string;
   peopleWatching: number; // 1-5
   bestSpots: string[];
@@ -15,6 +17,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Surry Hills",
     slug: "surry-hills",
     icon: "☕",
+    photo: "https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "Creative professionals, specialty coffee, converted warehouses. The inner-city neighborhood where designers and tech workers collide over flat whites.",
     peopleWatching: 5,
     bestSpots: ["Bourke Street cafes", "Crown Street shops", "Shannon Reserve park benches"],
@@ -30,6 +34,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Ultimo",
     slug: "ultimo",
     icon: "🏮",
+    photo: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "UTS campus energy, Chinatown-adjacent, broadcasting hub. Functional but with hidden gems. Where Sydney's Chinese and tech communities overlap.",
     peopleWatching: 4,
     bestSpots: ["UTS campus architecture", "Chinatown (Dixon Street)", "Powerhouse Museum area"],
@@ -45,6 +51,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Newtown",
     slug: "newtown",
     icon: "🎸",
+    photo: "https://images.unsplash.com/photo-1546268060-2592ff93ee24?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "Multicultural, bohemian, loud. Thai restaurants next to vintage shops next to activist bookstores. Sydney's most diverse strip.",
     peopleWatching: 5,
     bestSpots: ["King Street (whole length)", "Camperdown Memorial Rest Park", "Newtown Hotel courtyard"],
@@ -60,6 +68,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Darlinghurst",
     slug: "darlinghurst",
     icon: "🍸",
+    photo: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "Cocktail bars, LGBTQ+ history, upscale dining. Oxford Street energy with a sophisticated edge. Night owl territory.",
     peopleWatching: 4,
     bestSpots: ["Oxford Street strip", "Victoria Street wine bars", "Green Park"],
@@ -75,6 +85,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Chippendale",
     slug: "chippendale",
     icon: "🎨",
+    photo: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "University-adjacent arts precinct. Street art, galleries, and the famous Central Park vertical gardens. Feels like it's still becoming something.",
     peopleWatching: 4,
     bestSpots: ["Kensington Street", "White Rabbit Gallery area", "Central Park mall rooftop"],
@@ -90,6 +102,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Glebe",
     slug: "glebe",
     icon: "🌿",
+    photo: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "Bookish, leafy, Saturday markets. Heritage homes and students from Sydney Uni. Slower pace, intellectual vibe.",
     peopleWatching: 3,
     bestSpots: ["Glebe Point Road cafes", "Glebe Markets (Saturday)", "Blackwattle Bay foreshore"],
@@ -105,6 +119,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Pyrmont",
     slug: "pyrmont",
     icon: "🚢",
+    photo: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "Harbourside living, fish markets, converted wharves. Mix of families, young professionals, and tourists near Darling Harbour.",
     peopleWatching: 3,
     bestSpots: ["Sydney Fish Market", "Pirrama Park waterfront", "Jones Bay Wharf"],
@@ -120,6 +136,8 @@ export const neighborhoods: Neighborhood[] = [
     name: "Barangaroo",
     slug: "barangaroo",
     icon: "🏙️",
+    photo: "https://images.unsplash.com/photo-1524293581917-878a6d017c71?w=600&h=300&fit=crop",
+    photoCredit: "Unsplash",
     vibe: "Brand new waterfront precinct. Corporate towers, luxury dining, harbour walks. Sydney's vision of its future self.",
     peopleWatching: 3,
     bestSpots: ["Barangaroo Reserve headland", "Waterman's Cove", "Crown Sydney surrounds"],
